@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     EditText passwordInput;
 
     Button submitButton;
-
+//Shared preference for main activity 2
     SharedPreferences sp;
 
     @Override
