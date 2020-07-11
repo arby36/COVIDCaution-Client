@@ -1,5 +1,6 @@
 package com.hack3atx.covidcaution;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -34,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
                 name = nameInput.getText().toString();
                 email = emailInput.getText().toString();
                 password = passwordInput.getText().toString();
+
+                Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+                startActivity(intent);
             }
         });
 
