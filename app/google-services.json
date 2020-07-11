@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "731413195416",
+    "firebase_url": "https://covidcaution.firebaseio.com",
+    "project_id": "covidcaution",
+    "storage_bucket": "covidcaution.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:731413195416:android:b0f928c927dd273ae37eed",
+        "android_client_info": {
+          "package_name": "com.hack3atx.covidcaution"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "731413195416-0adlrobhubpefe15r6d2kdd6uv8is68p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrnUZG21iUTRa1bUvzXaQXu_JWMYKPLC0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "731413195416-0adlrobhubpefe15r6d2kdd6uv8is68p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
