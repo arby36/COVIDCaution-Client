@@ -24,7 +24,7 @@ import com.google.android.gms.vision.barcode.BarcodeDetector;
 import java.io.IOException;
 
 //CAMERA-CODE
-
+//cameracode
 public class MainActivity3 extends AppCompatActivity {
 
 
