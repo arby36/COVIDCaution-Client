@@ -4,12 +4,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.io.IOException;
 
@@ -23,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     EditText passwordInput;
 
     Button submitButton;
-//Shared preference for main activity 2
+
     SharedPreferences sp;
 
     @Override
@@ -51,10 +59,36 @@ public class MainActivity extends AppCompatActivity {
                 editor.putString("name", name);
                 editor.commit();
                 Toast.makeText(MainActivity.this, "Information Saved.", Toast.LENGTH_LONG).show();
-
                 Intent intent = new Intent(MainActivity.this, MainActivity2.class);
                 startActivity(intent);
             }
         });
+
+        email = emailInput.getText().toString();
+        password = passwordInput.getText().toString();
+
+        final FirebaseAuth mAuth;
+        mAuth = FirebaseAuth.getInstance();
+
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+
+        @Override
+        public void onComplete(@NonNull Task<AuthResult> task) {
+            if (task.isSuccessful()) {
+                // Sign in success, update UI with the signed-in user's information
+                FirebaseUser user = mAuth.getCurrentUser();
+                updateUI(user);
+            } else {
+                updateUI(null);
+            }
+        }
+    });
+
+}
+
+    private void updateUI(FirebaseUser currentUser) {
+        Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+        startActivity(intent);
     }
 }
