@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+//CAMERA-CODE
+
 public class MainActivity3 extends AppCompatActivity {
 
     @Override
