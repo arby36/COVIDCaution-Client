@@ -15,6 +15,7 @@ import android.widget.Toast;
 public class MainActivity2 extends AppCompatActivity {
 
     Button qrcodeButton;
+    Button seeAlert;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,11 +23,20 @@ public class MainActivity2 extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
 
         qrcodeButton = (Button) findViewById(R.id.button);
+        seeAlert =(Button) findViewById((R.id.button2));
         qrcodeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Intent intent = new Intent(MainActivity2.this, MainActivity3.class);
+                startActivity(intent);
+            }
+        });
+        seeAlert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(MainActivity2.this, MainActivity4.class);
                 startActivity(intent);
             }
         });

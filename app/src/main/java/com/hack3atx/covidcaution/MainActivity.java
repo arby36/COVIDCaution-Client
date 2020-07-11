@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.IOException;
+
 //LOGIN-PAGE-SIGN-UP-PAGE
 public class MainActivity extends AppCompatActivity {
 
