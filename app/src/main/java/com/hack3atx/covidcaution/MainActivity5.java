@@ -33,6 +33,7 @@ public class MainActivity5 extends AppCompatActivity {
         alerts =(Button) findViewById((R.id.button4));
         scan = (Button) findViewById(R.id.button6);
         create = (Button) findViewById(R.id.button7);
+        history = (Button) findViewById(R.id.button8);
 
         home.setOnClickListener(new View.OnClickListener() {
             @Override
