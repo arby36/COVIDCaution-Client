@@ -10,7 +10,24 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Second Activity"
-        tools:layout_editor_absoluteX="177dp"
-        tools:layout_editor_absoluteY="54dp" />
+        android:text="HOME"
+        android:textSize="30sp"
+        tools:layout_editor_absoluteX="163dp"
+        tools:layout_editor_absoluteY="37dp" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Good Morning"
+        tools:layout_editor_absoluteX="161dp"
+        tools:layout_editor_absoluteY="93dp" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/name"
+        tools:layout_editor_absoluteX="187dp"
+        tools:layout_editor_absoluteY="133dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
