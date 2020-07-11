@@ -17,6 +17,7 @@ public class MainActivity2 extends AppCompatActivity {
 
     Button qrcodeButton;
     Button seeAlert;
+    Button menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +26,8 @@ public class MainActivity2 extends AppCompatActivity {
 
         qrcodeButton = (Button) findViewById(R.id.button);
         seeAlert =(Button) findViewById((R.id.button2));
+        menu = (Button) findViewById(R.id.button3);
+
         qrcodeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,9 +47,17 @@ public class MainActivity2 extends AppCompatActivity {
             }
         });
 
-        TextView nameFile, counterVar;
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(MainActivity2.this, MainActivity5.class);
+                startActivity(intent);
+            }
+        });
+
+        TextView nameFile;
         nameFile = findViewById(R.id.textView2);
-        counterVar = findViewById(R.id.textView11);
 
         SharedPreferences sp = getApplicationContext().getSharedPreferences("UserFullName", Context.MODE_PRIVATE);
         String name = sp.getString("name", "");
