@@ -76,7 +76,7 @@ public class MainActivity3 extends AppCompatActivity {
             public void release() {
 
             }
-
+//Important Part of The Code
             @Override
             public void receiveDetections(Detector.Detections<Barcode> detections) {
                     final SparseArray<Barcode> qrCodes = detections.getDetectedItems();
