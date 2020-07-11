@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         submitButton = (Button) findViewById(R.id.submitButton);
 
-        sp = getSharedPreferences("MyUserPrefs", Context.MODE_PRIVATE);
+        sp = getSharedPreferences("UserFullName", Context.MODE_PRIVATE);
 
         submitButton.setOnClickListener(new View.OnClickListener() {
 

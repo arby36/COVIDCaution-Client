@@ -34,7 +34,7 @@ public class MainActivity2 extends AppCompatActivity {
         TextView nameFile;
         nameFile = findViewById(R.id.textView2);
 
-        SharedPreferences sp = getApplicationContext().getSharedPreferences("MyUserPrefs", Context.MODE_PRIVATE);
+        SharedPreferences sp = getApplicationContext().getSharedPreferences("UserFullName", Context.MODE_PRIVATE);
         String name = sp.getString("name", "");
         nameFile.setText(name);
     }
