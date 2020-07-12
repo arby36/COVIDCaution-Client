@@ -175,9 +175,17 @@ public class MainActivity4 extends AppCompatActivity {
         return hoursInMins + mins;
     }
 
-    public String querySavedLocation() {
-        String s =  "location;day;time";
+    public String[] querySavedLocation() throws IOException {
+        FileInputStream locationIn = openFileInput("locationStore");
+        int c;
+        String temp="";
+        while((c = locationIn.read()) != -1){
+            temp = temp + Character.toString((char)c);
+        }
+        locationIn.close();
+        String s = temp;
         String[] array = s.split(";");
+        return array;
     }
 
     private void queryDatabase(final String timeYouWereThere, final String dayYou, final String yourLocation) {
