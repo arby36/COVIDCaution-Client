@@ -127,7 +127,7 @@ public class MainActivity4 extends AppCompatActivity {
 
             result = "You are at EXTREMELY HIGH RISK of having COVID-19. You were at " + location + " within 1 day " +
                     "of someone " +
-                    "who tested positive for the virus." + "For your information, the time you check in was "
+                    "who tested positive for the virus." + " For your information, the time you check in was "
                     + timeYouWereThere + " and the time the positive person checked in was " + timePositiveCheckedIn +
                     ". The day you checked in was " + dayYou + " and the day positive checked in was " + dayPositive + "." +
                     " Please seek help immediately. If this is not possible, please self-quarantine.";
@@ -137,7 +137,7 @@ public class MainActivity4 extends AppCompatActivity {
 
             result = "You are at HIGH RISK of having COVID-19. You were at " + location + " within 1-2 day " +
                     "of someone " +
-                    "who tested positive for the virus." + "For your information, the time you check in was "
+                    "who tested positive for the virus." + " For your information, the time you check in was "
                     + timeYouWereThere + " and the time the positive person checked in was " + timePositiveCheckedIn +
                     ". The day you checked in was " + dayYou + " and the day positive checked in was " + dayPositive + "." +
                     " Please seek help immediately. If this is not possible, please self-quarantine.";
@@ -147,7 +147,7 @@ public class MainActivity4 extends AppCompatActivity {
 
             result = "You are at MEDIUM RISK of having COVID-19. You were at " + location + " within 2-3 day " +
                     "of someone " +
-                    "who tested positive for the virus." + "For your information, the time you check in was "
+                    "who tested positive for the virus." + " For your information, the time you check in was "
                     + timeYouWereThere + " and the time the positive person checked in was " + timePositiveCheckedIn +
                     ". The day you checked in was " + dayYou + " and the day positive checked in was " + dayPositive + "." +
                     " Please seek help immediately. If this is not possible, please self-quarantine.";
@@ -157,7 +157,7 @@ public class MainActivity4 extends AppCompatActivity {
 
             result = "You are at LOW RISK of having COVID-19. You were at " + location + " within 3-7 day " +
                     "of someone " +
-                    "who tested positive for the virus." + "For your information, the time you check in was "
+                    "who tested positive for the virus." + " For your information, the time you check in was "
                     + timeYouWereThere + " and the time the positive person checked in was " + timePositiveCheckedIn +
                     ". The day you checked in was " + dayYou + " and the day positive checked in was " + dayPositive + "." +
                     " Please seek help immediately. If this is not possible, please self-quarantine.";
@@ -186,14 +186,15 @@ public class MainActivity4 extends AppCompatActivity {
                     String dayPositive = (String) child.child("day").getValue();
                     String timePositiveCheckedIn = (String) child.child("timestampbegin").getValue();
                     String timePositiveCheckedOut = (String) child.child("timestampend").getValue();
-                    if (yourLocation.equals(location)) {
-                        alert = calculation(timePositiveCheckedIn, timeYouWereThere, dayPositive, dayYou, location);
-                        String priorAlert = alert;
-                        if (priorAlert != null) {
-                            alert = priorAlert + "\n \n" + calculation(timePositiveCheckedIn, timeYouWereThere, dayPositive, dayYou, location);
+                    /*if (yourLocation.equals(location)) {
+                        String calced = calculation(timePositiveCheckedIn, timeYouWereThere, dayPositive, dayYou, location);
+                        if (calced != null) {
+                            String priorAlert = alert;
+                            alert = priorAlert + "\n \n" + calced;
                         }
                         Log.i(null, "Alert is: " + alert);
-                    };
+                    };*/
+                    alert = calculation(timePositiveCheckedIn, timeYouWereThere, dayPositive, dayYou, location);
                 }
                 TextView t1 = findViewById(R.id.notification);
                 String answer = alert;
