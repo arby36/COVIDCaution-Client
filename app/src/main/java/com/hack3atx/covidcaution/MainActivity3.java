@@ -25,6 +25,7 @@ import java.io.IOException;
 
 //CAMERA-CODE
 //cameracode
+
 public class MainActivity3 extends AppCompatActivity {
 
 
