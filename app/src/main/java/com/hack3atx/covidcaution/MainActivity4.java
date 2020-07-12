@@ -41,8 +41,8 @@ public class MainActivity4 extends AppCompatActivity {
             t1.setText(answer);
         }
 
-    private static String calculation(String timePositiveCheckedIn, String timeYouWereThere, String dayPositive,
-                                      String dayYou, String location) {
+    public static String calculation(String timePositiveCheckedIn, String timeYouWereThere, String dayPositive,
+                              String dayYou, String location) {
 
         //Start Notification Analysis//
 
@@ -156,7 +156,7 @@ public class MainActivity4 extends AppCompatActivity {
         return result;
     }
 
-    private static int toMinutes(String s) {
+    public static int toMinutes(String s) {
         String[] hourMin = s.split(":");
         int hour = Integer.parseInt(hourMin[0]);
         int mins = Integer.parseInt(hourMin[1]);
@@ -164,3 +164,4 @@ public class MainActivity4 extends AppCompatActivity {
         return hoursInMins + mins;
     }
 }
+
