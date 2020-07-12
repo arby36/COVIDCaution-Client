@@ -29,14 +29,12 @@ import java.util.Scanner;
 //Alert-Page
 public class MainActivity4 extends AppCompatActivity {
 
-    Button notificationButton;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main4);
 
-        notificationButton = (Button) findViewById(R.id.button11);
+        Button notificationButton = (Button) findViewById(R.id.button11);
 
         notificationButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,7 +45,7 @@ public class MainActivity4 extends AppCompatActivity {
                         "Wednesday", "QR-Code-12-Jersey-Junction");
                 t1.setText(answer);
             }
-      });
+        });
     }
 
     public static String calculation(String timePositiveCheckedIn, String timeYouWereThere, String dayPositive,
