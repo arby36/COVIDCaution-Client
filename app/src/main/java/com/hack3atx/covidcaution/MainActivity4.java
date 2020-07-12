@@ -127,8 +127,8 @@ public class MainActivity4 extends AppCompatActivity {
 
             result = "You are at EXTREMELY HIGH RISK of having COVID-19. You were at " + location + " within 1 day " +
                     "of someone " +
-                    "who tested positive for the virus." + "\n" + "For your information, the time was " + timeYouWereThere +
-                    " and the day was " + dayYou + "." +
+                    "who tested positive for the virus." + "\n" + "For your information, the time was " + timePositiveCheckedIn +
+                    " and the day was " + dayPositive + "." +
                     " Please seek help immediately. If this is not possible, please self-quarantine.";
 
         } else if (timeYouWereThereInteger > (1440 + timePositiveCheckedInInteger) &&
@@ -136,8 +136,8 @@ public class MainActivity4 extends AppCompatActivity {
 
             result = "You are at HIGH RISK of having COVID-19. You were at " + location + " within 1-2 days " +
                     "of someone " +
-                    "who tested positive for the virus." + "\n" + "For your information, the time was " + timeYouWereThere +
-                    " and the day was " + dayYou + "." +
+                    "who tested positive for the virus." + "\n" + "For your information, the time was " + timePositiveCheckedIn +
+                    " and the day was " + dayPositive + "." +
                     " Please seek help immediately. If this is not possible, please self-quarantine.";
 
         } else if (timeYouWereThereInteger > (2880 + timePositiveCheckedInInteger) &&
@@ -145,8 +145,8 @@ public class MainActivity4 extends AppCompatActivity {
 
             result = "You are at MEDIUM RISK of having COVID-19. You were at " + location + " within 2-3 days " +
                     "of someone " +
-                    "who tested positive for the virus." + "\n" + "For your information, the time was " + timeYouWereThere +
-                    " and the day was " + dayYou + "." +
+                    "who tested positive for the virus." + "\n" + "For your information, the time was " + timePositiveCheckedIn +
+                    " and the day was " + dayPositive + "." +
                     " Please seek help immediately. If this is not possible, please self-quarantine.";
 
         } else if (timeYouWereThereInteger > (4320 + timePositiveCheckedInInteger) &&
@@ -154,8 +154,8 @@ public class MainActivity4 extends AppCompatActivity {
 
             result = "You are at LOW RISK of having COVID-19. You were at " + location + " within 3-7 " +
                     "as someone " +
-                    "who tested positive for the virus." + "\n" + "For your information, the time was " + timeYouWereThere +
-                    " and the day was " + dayYou + "." +
+                    "who tested positive for the virus." + "\n" + "For your information, the time was " + timePositiveCheckedIn +
+                    " and the day was " + dayPositive + "." +
                     " Please seek help immediately. If this is not possible, please self-quarantine.";
 
         }
@@ -183,13 +183,17 @@ public class MainActivity4 extends AppCompatActivity {
                     String timePositiveCheckedIn = (String) child.child("timestampbegin").getValue();
                     String timePositiveCheckedOut = (String) child.child("timestampend").getValue();
                     if (yourLocation.equals(location)) {
-                        TextView t1 = findViewById(R.id.notification);
                         alert = calculation(timePositiveCheckedIn, timeYouWereThere, dayPositive, dayYou, location);
+                        String priorAlert = alert;
+                        if (priorAlert != null) {
+                            alert = priorAlert + "\n \n" + calculation(timePositiveCheckedIn, timeYouWereThere, dayPositive, dayYou, location);
+                        }
                         Log.i(null, "Alert is: " + alert);
-                        String answer = alert;
-                        t1.setText(answer);
                     };
                 }
+                TextView t1 = findViewById(R.id.notification);
+                String answer = alert;
+                t1.setText(answer);
             }
             @Override
             public void onCancelled(DatabaseError error) {
