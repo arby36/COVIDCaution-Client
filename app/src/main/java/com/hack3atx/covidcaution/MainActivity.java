@@ -23,7 +23,10 @@ import java.io.IOException;
 
 //LOGIN-PAGE-SIGN-UP-PAGE
 public class MainActivity extends AppCompatActivity {
-
+    public void updateUI(FirebaseUser currentUser) {
+        Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+        startActivity(intent);
+    }
     private String name, email, password;
 
     EditText nameInput;
@@ -39,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        final FirebaseAuth mAuth;
+        mAuth = FirebaseAuth.getInstance();
+
         nameInput = (EditText) findViewById(R.id.nameInput);
         emailInput = (EditText) findViewById(R.id.emailInput);
         passwordInput = (EditText) findViewById(R.id.passwordInput);
@@ -48,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
         sp = getSharedPreferences("UserFullName", Context.MODE_PRIVATE);
 
         submitButton.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 name = nameInput.getText().toString();
@@ -59,36 +64,20 @@ public class MainActivity extends AppCompatActivity {
                 editor.putString("name", name);
                 editor.commit();
                 Toast.makeText(MainActivity.this, "Information Saved.", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(MainActivity.this, MainActivity2.class);
-                startActivity(intent);
+
+                mAuth.createUserWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    // Sign in success, update UI with the signed-in user's information
+                                    FirebaseUser user = mAuth.getCurrentUser();
+                                    updateUI(user);
+                                } else {
+                                    updateUI(null);
+                                }
+                            }
+                        });
             }
         });
-
-        email = emailInput.getText().toString();
-        password = passwordInput.getText().toString();
-
-        final FirebaseAuth mAuth;
-        mAuth = FirebaseAuth.getInstance();
-
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-
-        @Override
-        public void onComplete(@NonNull Task<AuthResult> task) {
-            if (task.isSuccessful()) {
-                // Sign in success, update UI with the signed-in user's information
-                FirebaseUser user = mAuth.getCurrentUser();
-                updateUI(user);
-            } else {
-                updateUI(null);
-            }
-        }
-    });
-
-}
-
-    private void updateUI(FirebaseUser currentUser) {
-        Intent intent = new Intent(MainActivity.this, MainActivity2.class);
-        startActivity(intent);
-    }
 }
