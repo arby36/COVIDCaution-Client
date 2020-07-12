@@ -16,7 +16,6 @@ public class MainActivity6 extends AppCompatActivity {
     EditText editText1;
     EditText editText2;
     Button button;
-    Button button2;
     ImageView imageView;
 
 
@@ -28,7 +27,6 @@ public class MainActivity6 extends AppCompatActivity {
         editText1 = findViewById(R.id.TITLE );
         editText2 = findViewById(R.id.editTextTextPersonName);
         button = findViewById(R.id.button10);
-        button2 = findViewById(R.id.button9);
         imageView = findViewById(R.id.imageView);
 
         button.setOnClickListener(new View.OnClickListener(){
@@ -43,14 +41,6 @@ public class MainActivity6 extends AppCompatActivity {
                 } else {
                     Toast.makeText(MainActivity6.this, "Enter something!", Toast.LENGTH_LONG).show();
                 }
-            }
-        });
-
-        button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity6.this, MainActivity8.class);
-                startActivity(intent);
             }
         });
     }

@@ -109,7 +109,7 @@ public class MainActivity3 extends AppCompatActivity {
                                 address = qrCodes.valueAt(0).displayValue;
                                 textView.setText(qrCodes.valueAt(0).displayValue);
                                 try {
-                                    storeLocation(address);
+                                    storeLocation("652 Croswell Ave SE, East Grand Rapids, MI, 49506");
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                 }

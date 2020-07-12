@@ -22,7 +22,6 @@ public class MainActivity5 extends AppCompatActivity {
     Button alerts;
     Button scan;
     Button create;
-    Button history;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +32,6 @@ public class MainActivity5 extends AppCompatActivity {
         alerts =(Button) findViewById((R.id.button4));
         scan = (Button) findViewById(R.id.button6);
         create = (Button) findViewById(R.id.button7);
-        history = (Button) findViewById(R.id.button8);
 
         home.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,15 +65,6 @@ public class MainActivity5 extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent intent = new Intent(MainActivity5.this, MainActivity6.class);
-                startActivity(intent);
-            }
-        });
-
-        history.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(MainActivity5.this, MainActivity7.class);
                 startActivity(intent);
             }
         });
