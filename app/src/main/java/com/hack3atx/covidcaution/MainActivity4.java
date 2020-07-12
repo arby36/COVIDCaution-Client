@@ -6,6 +6,7 @@ import androidx.core.app.NotificationCompat;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -29,6 +30,8 @@ import java.util.Scanner;
 //Alert-Page
 public class MainActivity4 extends AppCompatActivity {
 
+    String alert;
+
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference positiveRef = database.getReference("positivecases");
 
@@ -37,27 +40,16 @@ public class MainActivity4 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main4);
 
-        Button notificationButton = (Button) findViewById(R.id.button11);
 
-        notificationButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        /*String answer = calculation("3:57", "4:57", "Monday",
+                "Wednesday", "QR-Code-12-Jersey-Junction");*/
+        queryDatabase("4:57", "Wednesday", "652 Croswell Ave SE, East Grand Rapids, MI, 49506");
 
-                TextView t1 = findViewById(R.id.notification);
-                String answer = calculation("3:57", "4:57", "Monday",
-                        "Wednesday", "QR-Code-12-Jersey-Junction");
-                t1.setText(answer);
-            }
-        });
-    }
-
-    public static void queryDatabase() {
 
     }
-
 
     public static String calculation(String timePositiveCheckedIn, String timeYouWereThere, String dayPositive,
-                              String dayYou, String location) {
+                                     String dayYou, String location) {
 
         //Start Notification Analysis//
 
@@ -178,5 +170,34 @@ public class MainActivity4 extends AppCompatActivity {
         int hoursInMins = hour * 60;
         return hoursInMins + mins;
     }
+
+    private void queryDatabase(final String timeYouWereThere, final String dayYou, final String yourLocation) {
+
+        positiveRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.i(null, "Received database data");
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                    String location = (String) child.child("address").getValue();
+                    String dayPositive = (String) child.child("day").getValue();
+                    String timePositiveCheckedIn = (String) child.child("timestampbegin").getValue();
+                    String timePositiveCheckedOut = (String) child.child("timestampend").getValue();
+                    if (yourLocation.equals(location)) {
+                        TextView t1 = findViewById(R.id.notification);
+                        alert = calculation(timePositiveCheckedIn, timeYouWereThere, dayPositive, dayYou, location);
+                        Log.i(null, "Alert is: " + alert);
+                        String answer = alert;
+                        t1.setText(answer);
+                    };
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError error) {
+
+            }
+        });
+    }
+
+
 }
 
