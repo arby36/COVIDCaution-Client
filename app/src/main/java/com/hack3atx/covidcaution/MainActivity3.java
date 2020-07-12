@@ -1,6 +1,7 @@
 package com.hack3atx.covidcaution;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -9,6 +10,7 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.hardware.Camera;
 import android.nfc.tech.NfcBarcode;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.util.SparseArray;
@@ -21,7 +23,12 @@ import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
 
 //CAMERA-CODE
 //cameracode
@@ -33,6 +40,7 @@ public class MainActivity3 extends AppCompatActivity {
     CameraSource cameraSource;
     TextView textView;
     BarcodeDetector barcodeDetector;
+    String address;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,11 +96,23 @@ public class MainActivity3 extends AppCompatActivity {
                             public void run() {
                                 Vibrator vibrator = (Vibrator)getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
                                 vibrator.vibrate(1000);
+                                address = qrCodes.valueAt(0).displayValue;
                                 textView.setText(qrCodes.valueAt(0).displayValue);
+                                try {
+                                    storeLocation(address);
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
                             }
                         });
                     }
             }
         });
-    }
+    };
+    public void storeLocation(String location) throws IOException {
+        FileOutputStream locationStoreOut = openFileOutput("locationStore", Context.MODE_PRIVATE);
+        String locationData = location;
+        locationStoreOut.write(locationData.getBytes());
+        locationStoreOut.close();
+    };
 }
