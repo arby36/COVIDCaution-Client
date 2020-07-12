@@ -13,6 +13,7 @@ import android.nfc.tech.NfcBarcode;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -27,8 +28,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 //CAMERA-CODE
 //cameracode
@@ -111,8 +114,12 @@ public class MainActivity3 extends AppCompatActivity {
     };
     public void storeLocation(String location) throws IOException {
         FileOutputStream locationStoreOut = openFileOutput("locationStore", Context.MODE_PRIVATE);
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("EEEE", Locale.ENGLISH);
+        String weekDay= formatter.format(date);
+        Log.i(null, weekDay);
         String locationData = location;
-        locationStoreOut.write(locationData.getBytes());
-        locationStoreOut.close();
+        /*locationStoreOut.write(locationData.getBytes());
+        locationStoreOut.close();*/
     };
 }
