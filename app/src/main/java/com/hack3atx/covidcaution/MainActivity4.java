@@ -43,8 +43,12 @@ public class MainActivity4 extends AppCompatActivity {
 
         /*String answer = calculation("3:57", "4:57", "Monday",
                 "Wednesday", "QR-Code-12-Jersey-Junction");*/
-        queryDatabase("4:57", "Wednesday", "652 Croswell Ave SE, East Grand Rapids, MI, 49506");
-
+        try {
+            String[] rawLocation = querySavedLocation();
+            queryDatabase(rawLocation[2], rawLocation[1], rawLocation[0]);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
