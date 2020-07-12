@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, MainActivity2.class);
         startActivity(intent);
     }
+
     private String name, email, password;
 
     EditText nameInput;
