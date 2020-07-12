@@ -50,6 +50,13 @@ public class MainActivity3 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3);
 
+        //Debug
+        try {
+            storeLocation("Bruh Street NE");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         surfaceView = (SurfaceView) findViewById(R.id.camerapreview);
         textView = (TextView) findViewById(R.id.textView);
 
@@ -115,11 +122,13 @@ public class MainActivity3 extends AppCompatActivity {
     public void storeLocation(String location) throws IOException {
         FileOutputStream locationStoreOut = openFileOutput("locationStore", Context.MODE_PRIVATE);
         Date date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("EEEE", Locale.ENGLISH);
-        String weekDay= formatter.format(date);
-        Log.i(null, weekDay);
-        String locationData = location;
-        /*locationStoreOut.write(locationData.getBytes());
-        locationStoreOut.close();*/
+        SimpleDateFormat dayFormatter = new SimpleDateFormat("EEEE", Locale.ENGLISH);
+        SimpleDateFormat timeFormatter = new SimpleDateFormat("HH:mm", Locale.ENGLISH);
+        String weekDay = dayFormatter.format(date);
+        String timeDay = timeFormatter.format(date);
+        Log.i(null, weekDay + ";" + timeDay);
+        String locationData = location + ";" + weekDay + ";" + timeDay;
+        locationStoreOut.write(locationData.getBytes());
+        locationStoreOut.close();
     };
 }
