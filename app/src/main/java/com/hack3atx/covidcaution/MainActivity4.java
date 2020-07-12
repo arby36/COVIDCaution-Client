@@ -175,6 +175,11 @@ public class MainActivity4 extends AppCompatActivity {
         return hoursInMins + mins;
     }
 
+    public String querySavedLocation() {
+        String s =  "location;day;time";
+        String[] array = s.split(";");
+    }
+
     private void queryDatabase(final String timeYouWereThere, final String dayYou, final String yourLocation) {
 
         positiveRef.addValueEventListener(new ValueEventListener() {
