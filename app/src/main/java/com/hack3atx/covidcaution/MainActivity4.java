@@ -29,17 +29,26 @@ import java.util.Scanner;
 //Alert-Page
 public class MainActivity4 extends AppCompatActivity {
 
+    Button notificationButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-            TextView t1;
-            t1 = findViewById(R.id.textView6);
-            String answer = calculation("3:57", "4:57", "Monday",
-                    "Wednesday", "QR-Code-12-Jersey-Junction");
-            t1.setText(answer);
-        }
+        notificationButton = (Button) findViewById(R.id.button11);
+
+        notificationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                TextView t1 = findViewById(R.id.notification);
+                String answer = calculation("3:57", "4:57", "Monday",
+                        "Wednesday", "QR-Code-12-Jersey-Junction");
+                t1.setText(answer);
+            }
+      });
+    }
 
     public static String calculation(String timePositiveCheckedIn, String timeYouWereThere, String dayPositive,
                               String dayYou, String location) {
