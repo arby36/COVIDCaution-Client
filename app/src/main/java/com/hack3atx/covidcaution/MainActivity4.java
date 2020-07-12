@@ -29,20 +29,35 @@ import java.util.Scanner;
 //Alert-Page
 public class MainActivity4 extends AppCompatActivity {
 
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference positiveRef = database.getReference("positivecases");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main4);
 
-            TextView t1;
-            t1 = findViewById(R.id.textView6);
-            String answer = calculation("3:57", "4:57", "Monday",
-                    "Wednesday", "QR-Code-12-Jersey-Junction");
-            t1.setText(answer);
-        }
+        Button notificationButton = (Button) findViewById(R.id.button11);
 
-    private static String calculation(String timePositiveCheckedIn, String timeYouWereThere, String dayPositive,
-                                      String dayYou, String location) {
+        notificationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                TextView t1 = findViewById(R.id.notification);
+                String answer = calculation("3:57", "4:57", "Monday",
+                        "Wednesday", "QR-Code-12-Jersey-Junction");
+                t1.setText(answer);
+            }
+        });
+    }
+
+    public static void queryDatabase() {
+
+    }
+
+
+    public static String calculation(String timePositiveCheckedIn, String timeYouWereThere, String dayPositive,
+                              String dayYou, String location) {
 
         //Start Notification Analysis//
 
@@ -156,7 +171,7 @@ public class MainActivity4 extends AppCompatActivity {
         return result;
     }
 
-    private static int toMinutes(String s) {
+    public static int toMinutes(String s) {
         String[] hourMin = s.split(":");
         int hour = Integer.parseInt(hourMin[0]);
         int mins = Integer.parseInt(hourMin[1]);
@@ -164,3 +179,4 @@ public class MainActivity4 extends AppCompatActivity {
         return hoursInMins + mins;
     }
 }
+
