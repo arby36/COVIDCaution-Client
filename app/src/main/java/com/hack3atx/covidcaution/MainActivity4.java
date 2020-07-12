@@ -127,35 +127,39 @@ public class MainActivity4 extends AppCompatActivity {
 
             result = "You are at EXTREMELY HIGH RISK of having COVID-19. You were at " + location + " within 1 day " +
                     "of someone " +
-                    "who tested positive for the virus." + "\n" + "For your information, the time was " + timePositiveCheckedIn +
-                    " and the day was " + dayPositive + "." +
+                    "who tested positive for the virus." + "For your information, the time you check in was "
+                    + timeYouWereThere + " and the time the positive person checked in was " + timePositiveCheckedIn +
+                    ". The day you checked in was " + dayYou + " and the day positive checked in was " + dayPositive + "." +
                     " Please seek help immediately. If this is not possible, please self-quarantine.";
 
         } else if (timeYouWereThereInteger > (1440 + timePositiveCheckedInInteger) &&
                 timeYouWereThereInteger <= (2880 + timePositiveCheckedInInteger)) {
 
-            result = "You are at HIGH RISK of having COVID-19. You were at " + location + " within 1-2 days " +
+            result = "You are at HIGH RISK of having COVID-19. You were at " + location + " within 1-2 day " +
                     "of someone " +
-                    "who tested positive for the virus." + "\n" + "For your information, the time was " + timePositiveCheckedIn +
-                    " and the day was " + dayPositive + "." +
+                    "who tested positive for the virus." + "For your information, the time you check in was "
+                    + timeYouWereThere + " and the time the positive person checked in was " + timePositiveCheckedIn +
+                    ". The day you checked in was " + dayYou + " and the day positive checked in was " + dayPositive + "." +
                     " Please seek help immediately. If this is not possible, please self-quarantine.";
 
         } else if (timeYouWereThereInteger > (2880 + timePositiveCheckedInInteger) &&
                 timeYouWereThereInteger <= (4320 + timePositiveCheckedInInteger)) {
 
-            result = "You are at MEDIUM RISK of having COVID-19. You were at " + location + " within 2-3 days " +
+            result = "You are at MEDIUM RISK of having COVID-19. You were at " + location + " within 2-3 day " +
                     "of someone " +
-                    "who tested positive for the virus." + "\n" + "For your information, the time was " + timePositiveCheckedIn +
-                    " and the day was " + dayPositive + "." +
+                    "who tested positive for the virus." + "For your information, the time you check in was "
+                    + timeYouWereThere + " and the time the positive person checked in was " + timePositiveCheckedIn +
+                    ". The day you checked in was " + dayYou + " and the day positive checked in was " + dayPositive + "." +
                     " Please seek help immediately. If this is not possible, please self-quarantine.";
 
         } else if (timeYouWereThereInteger > (4320 + timePositiveCheckedInInteger) &&
                 timeYouWereThereInteger <= (10080 + timePositiveCheckedInInteger)) {
 
-            result = "You are at LOW RISK of having COVID-19. You were at " + location + " within 3-7 " +
-                    "as someone " +
-                    "who tested positive for the virus." + "\n" + "For your information, the time was " + timePositiveCheckedIn +
-                    " and the day was " + dayPositive + "." +
+            result = "You are at LOW RISK of having COVID-19. You were at " + location + " within 3-7 day " +
+                    "of someone " +
+                    "who tested positive for the virus." + "For your information, the time you check in was "
+                    + timeYouWereThere + " and the time the positive person checked in was " + timePositiveCheckedIn +
+                    ". The day you checked in was " + dayYou + " and the day positive checked in was " + dayPositive + "." +
                     " Please seek help immediately. If this is not possible, please self-quarantine.";
 
         }
