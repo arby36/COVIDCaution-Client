@@ -113,4 +113,16 @@
         tools:layout_editor_absoluteX="9dp"
         tools:layout_editor_absoluteY="7dp" />
 
+    <Button
+        android:id="@+id/signOutButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_red_light"
+        android:text="Sign Out"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button"
+        app:layout_constraintVertical_bias="0.868" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

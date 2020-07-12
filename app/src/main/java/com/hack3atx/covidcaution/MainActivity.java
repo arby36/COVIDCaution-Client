@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,8 +17,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
-import java.io.IOException;
 
 //LOGIN-PAGE-SIGN-UP-PAGE
 public class MainActivity extends AppCompatActivity {
@@ -35,15 +32,17 @@ public class MainActivity extends AppCompatActivity {
 
     Button submitButton;
 
-    SharedPreferences sp;
+    private FirebaseAuth mAuth;
 
+    SharedPreferences sp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final FirebaseAuth mAuth;
         mAuth = FirebaseAuth.getInstance();
+
+        final FirebaseUser currentUser = mAuth.getCurrentUser();
 
         nameInput = (EditText) findViewById(R.id.nameInput);
         emailInput = (EditText) findViewById(R.id.emailInput);
@@ -65,19 +64,50 @@ public class MainActivity extends AppCompatActivity {
                 editor.commit();
                 Toast.makeText(MainActivity.this, "Information Saved.", Toast.LENGTH_LONG).show();
 
-                mAuth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    // Sign in success, update UI with the signed-in user's information
-                                    FirebaseUser user = mAuth.getCurrentUser();
-                                    updateUI(user);
-                                } else {
-                                    updateUI(null);
+                if (currentUser != null) {
+                    updateUI(currentUser);
+                } else {
+                    if (email.equals("") || password.equals("")) {
+                        Context context = getApplicationContext();
+                        CharSequence text = "Please enter a valid email and password.";
+                        int duration = Toast.LENGTH_LONG;
+                        Toast.makeText(context, text, duration).show();
+                    } else {
+                        mAuth.createUserWithEmailAndPassword(email, password)
+                            .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        // Sign in success, update UI with the signed-in user's information
+                                        FirebaseUser user = mAuth.getCurrentUser();
+                                        updateUI(user);
+                                    } else {
+                                        mAuth.signInWithEmailAndPassword(email, password)
+                                                .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                                        if (task.isSuccessful()) {
+                                                            FirebaseUser user = mAuth.getCurrentUser();
+                                                            updateUI(user);
+                                                        } else {
+                                                            Context context = getApplicationContext();
+                                                            CharSequence text = "Please enter a valid email and password.";
+                                                            int duration = Toast.LENGTH_LONG;
+                                                            Toast.makeText(context, text, duration).show();
+                                                        }
+                                                    }
+                                                    });
+                                    }
+
                                 }
-                            }
-                        });
+
+                            });
+
+                    }
+
+                }
+
             }
         });
+    }
 }

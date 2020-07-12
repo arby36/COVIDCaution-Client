@@ -24,9 +24,9 @@
 
     <Button
         android:id="@+id/submitButton"
-        android:layout_width="220dp"
-        android:layout_height="60dp"
-        android:text="@string/submit"
+        android:layout_width="304dp"
+        android:layout_height="116dp"
+        android:text="@string/sign_up_or_sign_in"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

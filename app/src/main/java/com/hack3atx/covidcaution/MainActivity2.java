@@ -12,12 +12,15 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 //HOME-PAGE-CODE
 public class MainActivity2 extends AppCompatActivity {
 
     Button qrcodeButton;
     Button seeAlert;
     Button menu;
+    Button signOut;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +30,7 @@ public class MainActivity2 extends AppCompatActivity {
         qrcodeButton = (Button) findViewById(R.id.button);
         seeAlert =(Button) findViewById((R.id.button2));
         menu = (Button) findViewById(R.id.button3);
+        signOut = (Button) findViewById(R.id.signOutButton);
 
         qrcodeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,6 +60,13 @@ public class MainActivity2 extends AppCompatActivity {
             }
         });
 
+        signOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signOut();
+            }
+        });
+
         TextView nameFile;
         nameFile = findViewById(R.id.textView2);
 
@@ -63,4 +74,11 @@ public class MainActivity2 extends AppCompatActivity {
         String name = sp.getString("name", "");
         nameFile.setText(name);
     }
+
+    public void signOut() {
+        FirebaseAuth.getInstance().signOut();
+        Intent intent = new Intent(MainActivity2.this, MainActivity.class);
+        startActivity(intent);
+    }
+
 }
