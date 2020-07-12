@@ -52,7 +52,7 @@ public class MainActivity3 extends AppCompatActivity {
 
         //Debug
         try {
-            storeLocation("Bruh Street NE");
+            storeLocation("652 Croswell Ave SE, East Grand Rapids, MI, 49506");
         } catch (IOException e) {
             e.printStackTrace();
         }

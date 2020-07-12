@@ -189,6 +189,7 @@ public class MainActivity4 extends AppCompatActivity {
         locationIn.close();
         String s = temp;
         String[] array = s.split(";");
+        deleteFile("locationStore");
         return array;
     }
 
