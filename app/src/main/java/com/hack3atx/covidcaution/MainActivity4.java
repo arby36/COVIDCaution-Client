@@ -29,6 +29,9 @@ import java.util.Scanner;
 //Alert-Page
 public class MainActivity4 extends AppCompatActivity {
 
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference positiveRef = database.getReference("positivecases");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +50,11 @@ public class MainActivity4 extends AppCompatActivity {
             }
         });
     }
+
+    public static void queryDatabase() {
+
+    }
+
 
     public static String calculation(String timePositiveCheckedIn, String timeYouWereThere, String dayPositive,
                               String dayYou, String location) {
