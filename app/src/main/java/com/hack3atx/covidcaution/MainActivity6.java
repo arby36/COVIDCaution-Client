@@ -13,7 +13,8 @@ import android.widget.Toast;
 //Create Page
 public class MainActivity6 extends AppCompatActivity {
 
-    EditText editText;
+    EditText editText1;
+    EditText editText2;
     Button button;
     Button button2;
     ImageView imageView;
@@ -24,7 +25,8 @@ public class MainActivity6 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main6);
 
-        editText = findViewById(R.id.TITLE + R.id.editTextTextPersonName);
+        editText1 = findViewById(R.id.TITLE );
+        editText2 = findViewById(R.id.editTextTextPersonName);
         button = findViewById(R.id.button10);
         button2 = findViewById(R.id.button9);
         imageView = findViewById(R.id.imageView);
@@ -32,7 +34,10 @@ public class MainActivity6 extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                String text = editText.getText().toString();
+
+                String text1 = editText1.getText().toString();
+                String text2 = editText2.getText().toString();
+                String text = "Location name = " + text1 + " Address = " + text2;
                 if(!text.equals("")){
                     new ImageDownloaderTask(imageView).execute("https://api.qrserver.com/v1/create-qr-code/?size=1000x1000&data=" + text);
                 } else {
